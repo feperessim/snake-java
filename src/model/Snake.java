@@ -1,5 +1,7 @@
 package model;
 
+import enums.Directions.Direction;
+
 public class Snake {
     private SnakeBody snakeHead;
     private SnakeBody snakeTail;
@@ -23,11 +25,45 @@ public class Snake {
         setSnakeSize(snakeSize + 1);
     }
     
+    public void removeLast() {
+        SnakeBody snakeBodyCurrent = snakeHead;;
+        SnakeBody snakeBodyPrevious = null;
+        
+        while (snakeBodyCurrent != null) {
+            snakeBodyPrevious = snakeBodyCurrent;
+            snakeBodyCurrent = snakeBodyCurrent.getNextBody();
+            System.out.println("Preso");
+        }
+        snakeTail = snakeBodyPrevious;
+        //snakeBodyCurrent.setNextBody(null);
+        //snakeBodyCurrent = null;
+    }
+    
     public void move() {
-        SnakeBody tempSnakeBody = snakeTail;
-        snakeTail = snakeTail.getNextBody();
-        snakeHead.setNextBody(tempSnakeBody);
-        tempSnakeBody = null;
+        SnakeBody temp = snakeHead;
+        snakeTail.setNextBody(snakeHead);
+        snakeHead.setNextBody(null);
+        snakeHead = snakeTail        ;
+        snakeTail = temp;
+        snakeHead.setDirection(snakeTail.getDirection());
+        snakeHead.setX(snakeTail.getX());
+        snakeHead.setY(snakeTail.getY());
+        
+        //System.out.println("Tail: " + snakeTail.getX());
+        //System.out.println("Head: " + snakeHead.getX());
+        
+        if (snakeHead.getDirection() == Direction.UP.ordinal()) {
+            snakeHead.setX(snakeHead.getY() - snakeHead.getHeight());
+        }
+        else if (snakeHead.getDirection() == Direction.DOWN.ordinal()) {
+            snakeHead.setX(snakeHead.getY() + snakeHead.getHeight());
+        }
+        else if (snakeHead.getDirection() == Direction.LEFT.ordinal()) {
+            snakeHead.setX(snakeHead.getX() + snakeHead.getWidth());
+        }
+        else {
+            snakeHead.setX(snakeHead.getX() + snakeHead.getWidth());
+        }
     }
     
     public SnakeBody getSnakeHead() {

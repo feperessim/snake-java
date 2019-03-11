@@ -54,19 +54,24 @@ public class FXMLGameScreenController implements Initializable {
     private int SCREEN_HORIZONTAL_BOUND;
     
     private enum  Difficult {
-        EASY(500), 
-        MEDIUM(300),
-        HARD(100);
+        EASY(1000), 
+        MEDIUM(700),
+        HARD(500);
 
         private final int dif;
         Difficult(int dif) {
             this.dif = dif;
         }
+        
+        public int getDifficult() {
+            return this.dif;
+        }
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        difficult = Difficult.EASY.ordinal();
+        difficult = Difficult.EASY.getDifficult();
+        System.out.println(difficult);
         setScreenItems(false);
     }
     

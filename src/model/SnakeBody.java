@@ -2,16 +2,17 @@ package model;
 
 public class SnakeBody {
     private SnakeBody next;
-    private double x;
-    private double y;
-    private double width;
-    private double height;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
     private int direction;
-    
-    public SnakeBody (double x, 
-                  double y, 
-                  double widht, 
-                  double height) {
+    public String nome;
+    public SnakeBody (
+                  int x, 
+                  int y, 
+                  int widht, 
+                  int height) {
         this.x = x;
         this.y = y;
         this.width = widht;
@@ -34,19 +35,35 @@ public class SnakeBody {
         return this.direction;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+    
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }
