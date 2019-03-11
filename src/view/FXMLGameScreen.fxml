@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLGameScreenController">
+   <top>
+      <StackPane prefHeight="19.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle fx:id="topRectangle" arcHeight="5.0" arcWidth="5.0" fill="#949ea8" height="27.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="853.0" />
+            <MenuBar fx:id="menuBar" visible="false">
+              <menus>
+                <Menu mnemonicParsing="false" text="Opçoes">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#handleMenuItemComecar" text="Começar" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Configuraçoes">
+                     <graphic>
+                        <MenuButton mnemonicParsing="false" text="Niveis">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Facil" />
+                            <MenuItem mnemonicParsing="false" text="Mediano" />
+                              <MenuItem mnemonicParsing="false" text="Dificil" />
+                          </items>
+                        </MenuButton>
+                     </graphic>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </StackPane>
+   </top>
+   <bottom>
+      <StackPane prefHeight="10.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle fx:id="bottomRectangle" arcHeight="5.0" arcWidth="5.0" fill="#949ea8" height="21.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="852.0" />
+            <Rectangle fx:id="pointsRectangle" arcHeight="5.0" arcWidth="5.0" fill="#4e5c68" height="22.0" stroke="BLACK" strokeType="INSIDE" width="205.0" />
+            <Text fx:id="pointsText" fill="#eeeeee" strokeType="OUTSIDE" strokeWidth="0.0" text="Pontos: ">
+               <font>
+                  <Font name="LatinModernMath-Regular" size="20.0" />
+               </font></Text>
+         </children>
+      </StackPane>
+   </bottom>
+   <left>
+      <Rectangle fx:id="leftRectangle" arcHeight="5.0" arcWidth="5.0" fill="#949ea8" height="601.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="25.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Rectangle fx:id="rightRectangle" arcHeight="5.0" arcWidth="5.0" fill="#949ea8" height="600.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="25.0" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <Canvas fx:id="canvas" height="600.0" width="800.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
