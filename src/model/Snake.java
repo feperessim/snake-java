@@ -14,15 +14,27 @@ public class Snake {
     }
     
     public void insertBottom(SnakeBody snakeBody) {
-        snakeBody.setNextBody(snakeTail);
+        snakeTail.setNextBody(snakeBody);
         snakeTail = snakeBody;
+       // snakeBody.setNextBody(null);
         setSnakeSize(snakeSize + 1);
     }
     
     public void insertTop(SnakeBody snakeBody) {
-        snakeHead.setNextBody(snakeBody);
+        snakeBody.setNextBody(snakeHead);
         snakeHead = snakeBody;
-        setSnakeSize(snakeSize + 1);
+        //setSnakeSize(snakeSize + 1);
+    }
+    
+    public int size() {
+        int i = 0;
+        SnakeBody head = snakeHead;
+        
+        while (head.getNextBody() != null) {
+            head = head.getNextBody();
+            i++;
+        }
+        return i;
     }
     
     public void removeLast() {

@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLGameScreenController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLGameScreenController">
    <top>
       <StackPane prefHeight="19.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -56,10 +56,10 @@
       </StackPane>
    </bottom>
    <left>
-      <Rectangle fx:id="leftRectangle" arcHeight="5.0" arcWidth="5.0" fill="#949ea8" height="601.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="25.0" BorderPane.alignment="CENTER" />
+      <Rectangle fx:id="leftRectangle" arcHeight="5.0" arcWidth="5.0" fill="#949ea8" height="593.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="25.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Rectangle fx:id="rightRectangle" arcHeight="5.0" arcWidth="5.0" fill="#949ea8" height="600.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="25.0" BorderPane.alignment="CENTER" />
+      <Rectangle fx:id="rightRectangle" arcHeight="5.0" arcWidth="5.0" fill="#949ea8" height="592.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="25.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
       <Canvas fx:id="canvas" height="600.0" width="800.0" BorderPane.alignment="CENTER" />

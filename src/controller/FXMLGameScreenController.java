@@ -6,20 +6,28 @@
  */
 package controller;
 
+import enums.Directions;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuBar;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.Snake;
 import model.SnakeBody;
 import runnables.SnakeGame;
+import runnables.SnakeGameV2;
+import runnables.SnakeGameV3;
 
 
 public class FXMLGameScreenController implements Initializable {
@@ -39,6 +47,8 @@ public class FXMLGameScreenController implements Initializable {
     private MenuBar menuBar;
     @FXML
     private Text pointsText;
+    @FXML 
+    private BorderPane borderPane;
     
     private GraphicsContext gc;
     private int difficult;
@@ -71,8 +81,9 @@ public class FXMLGameScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         difficult = Difficult.EASY.getDifficult();
-        System.out.println(difficult);
         setScreenItems(false);
+        borderPane.getScene();
+        
     }
     
     @FXML
@@ -80,9 +91,10 @@ public class FXMLGameScreenController implements Initializable {
         //gc.setFill(Color.LAVENDER);
         //gc.fillOval(0, 0, 20, 20);
         //gc.setFill(Color.ANTIQUEWHITE);
+        
         setScreenItems(true);
         pointsText.setText("Pontos: 0");
-        SnakeGame snakeGame = new SnakeGame(canvas, difficult, pointsText);
+        SnakeGameV3 snakeGame = new SnakeGameV3(canvas, difficult, pointsText);
         Thread game = new Thread(snakeGame);
         game.setDaemon(true);
         game.start();
@@ -98,4 +110,15 @@ public class FXMLGameScreenController implements Initializable {
         pointsRectangle.setVisible(value);
         pointsText.setVisible(value);
     }
+    
+    private void handleSnakeDirection(KeyEvent event) {
+        System.out.println("Apertou uma tecla : )");
+        switch (event.getCode()) {
+            case UP:    snakeHead.setDirection(Directions.Direction.UP.ordinal()); break;
+            case DOWN:  snakeHead.setDirection(Directions.Direction.DOWN.ordinal()); break;
+            case LEFT:  snakeHead.setDirection(Directions.Direction.LEFT.ordinal()); break;
+            case RIGHT: snakeHead.setDirection(Directions.Direction.UP.ordinal()); break;
+            case SHIFT: snakeHead.setDirection(Directions.Direction.UP.ordinal()); break;
+        }
+    }    
 }

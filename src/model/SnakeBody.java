@@ -7,7 +7,7 @@ public class SnakeBody {
     private int width;
     private int height;
     private int direction;
-    public String nome;
+
     public SnakeBody (
                   int x, 
                   int y, 

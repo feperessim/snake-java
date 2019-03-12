@@ -94,12 +94,15 @@ public class SnakeGame implements Runnable{
             try {
                 Thread.sleep(difficult);
                 
-               move();
-               snake.insertBottom(new SnakeBody(snakeTail.getX() - 20, 
+               
+               snake.insertTop(new SnakeBody(snakeTail.getX() + 20, 
                                                 snakeTail.getY(), 
                                                 snakeTail.getWidth(),
                                                 snakeTail.getHeight()));
-      
+               snakeHead = snake.getSnakeHead();
+               snakeTail = snake.getSnakeTail();
+                System.out.println(snake.size());
+                move();
                 /*if (!endOfGame()) {
                     eat();
                 }*/
@@ -124,6 +127,19 @@ public class SnakeGame implements Runnable{
                     toRunLater.getHeight());
         });
         
+        SnakeBody tempPrevious = snakeHead;
+        while (tempPrevious.getNextBody() != snakeTail) {
+            tempPrevious = tempPrevious.getNextBody();
+        }
+        tempPrevious.setNextBody(null);
+        snakeTail.setNextBody(snakeHead);
+        snakeTail.setDirection(snakeHead.getDirection());
+        snakeTail.setX(snakeHead.getX());
+        snakeTail.setY(snakeHead.getY());
+        snakeHead = snakeTail;
+        snakeTail = tempPrevious;
+        
+        /*
         SnakeBody temp = snakeHead;
         snakeTail.setNextBody(snakeHead);
         snakeHead.setNextBody(null);
@@ -131,7 +147,7 @@ public class SnakeGame implements Runnable{
         snakeTail = temp;
         snakeHead.setDirection(snakeTail.getDirection());
         snakeHead.setX(snakeTail.getX());
-        snakeHead.setY(snakeTail.getY());
+        snakeHead.setY(snakeTail.getY());*/
         
         //System.out.println("Tail: " + snakeTail.getX());
         //System.out.println("Head: " + snakeHead.getX());
