@@ -3,30 +3,25 @@
  * https://www.devmedia.com.br/tipos-enum-no-java/25729
  * https://docs.oracle.com/javafx/2/canvas/jfxpub-canvas.htm#BCFCCEFE
  * https://docs.oracle.com/javase/8/javafx/api/javafx/scene/canvas/GraphicsContext.html#fillOval-double-double-double-double-
- */
+ * Busca Ceoil
+*/
 package controller;
 
 import enums.Directions;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuBar;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import model.Snake;
 import model.SnakeBody;
-import runnables.SnakeGame;
-import runnables.SnakeGameV2;
+import runnables.MusicPlayer;
 import runnables.SnakeGameV3;
 
 
@@ -64,9 +59,9 @@ public class FXMLGameScreenController implements Initializable {
     private int SCREEN_HORIZONTAL_BOUND;
     
     private enum  Difficult {
-        EASY(1000), 
-        MEDIUM(700),
-        HARD(500);
+        EASY(300), 
+        MEDIUM(100),
+        HARD(50);
 
         private final int dif;
         Difficult(int dif) {
@@ -83,15 +78,10 @@ public class FXMLGameScreenController implements Initializable {
         difficult = Difficult.EASY.getDifficult();
         setScreenItems(false);
         borderPane.getScene();
-        
     }
     
     @FXML
     public void handleMenuItemComecar() {
-        //gc.setFill(Color.LAVENDER);
-        //gc.fillOval(0, 0, 20, 20);
-        //gc.setFill(Color.ANTIQUEWHITE);
-        
         setScreenItems(true);
         pointsText.setText("Pontos: 0");
         SnakeGameV3 snakeGame = new SnakeGameV3(canvas, difficult, pointsText);
@@ -111,14 +101,18 @@ public class FXMLGameScreenController implements Initializable {
         pointsText.setVisible(value);
     }
     
-    private void handleSnakeDirection(KeyEvent event) {
-        System.out.println("Apertou uma tecla : )");
-        switch (event.getCode()) {
-            case UP:    snakeHead.setDirection(Directions.Direction.UP.ordinal()); break;
-            case DOWN:  snakeHead.setDirection(Directions.Direction.DOWN.ordinal()); break;
-            case LEFT:  snakeHead.setDirection(Directions.Direction.LEFT.ordinal()); break;
-            case RIGHT: snakeHead.setDirection(Directions.Direction.UP.ordinal()); break;
-            case SHIFT: snakeHead.setDirection(Directions.Direction.UP.ordinal()); break;
-        }
-    }    
+    @FXML
+    public void handleMenuButtonFacil() {
+        this.difficult = Difficult.EASY.getDifficult();
+    }
+    
+    @FXML
+    public void handleMenuButtonMediano() {
+        this.difficult = Difficult.MEDIUM.getDifficult();
+    }
+    
+    @FXML
+    public void handleMenuButtonDificil() {
+        this.difficult = Difficult.HARD.getDifficult();
+    }
 }

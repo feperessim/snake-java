@@ -6,12 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -86,10 +84,15 @@ public class SnakeGameV3 implements Runnable {
     
     @Override
     public void run() {
+        MusicPlayer musicPlayerGame = new MusicPlayer("src/musics_and_sounds/Pat_Metheny_Always_and_Forever.mp3", true);
+        Thread musicGame = new Thread(musicPlayerGame);
+        musicGame.setDaemon(true);
+        musicGame.start();
+        
         int counter = 0;
         while (!endGame) {
             try {
-                Thread.sleep(300);
+                Thread.sleep(difficult);
             } catch (InterruptedException ex) {
                 
             }
@@ -97,8 +100,7 @@ public class SnakeGameV3 implements Runnable {
             move();
             if (!endGame) {
                 eat();
-                
-                if (counter % 10 == 0) {
+                if (counter % 20 == 0) {
                     genFoodAtScreen();
                 }
                 counter++;
@@ -106,6 +108,12 @@ public class SnakeGameV3 implements Runnable {
             draw();
         }
         pointsText.setText("Game over");
+        MusicPlayer musicPlayer = new MusicPlayer("src/musics_and_sounds/DieSound_CC0_by_EugeneLoza.mp3");
+        Thread music = new Thread(musicPlayer);
+        music.setDaemon(true);
+        music.start();
+        musicGame.interrupt();
+        
     }
     
     private void move() {
@@ -185,6 +193,11 @@ public class SnakeGameV3 implements Runnable {
                 }
             }
         }
+        Platform.runLater(() -> { 
+                gc.setFill(Color.DARKGRAY);
+                gc.fillOval(snakeHead.getX()*SNAKE_BODY_WIDTH, snakeHead.getY()*SNAKE_BODY_HEIGHT, SNAKE_BODY_WIDTH, SNAKE_BODY_HEIGHT);
+        });
+        
         Platform.runLater(() -> {gc.setFill(Color.LAVENDER);});
     }
     
@@ -215,7 +228,7 @@ public class SnakeGameV3 implements Runnable {
             y = 0;
         }
         
-        if (this.screen[snakeHead.getY()][snakeHead.getX()] == Items.Item.FOOD.ordinal()) {
+        if (inBounds() && this.screen[snakeHead.getY()][snakeHead.getX()] == Items.Item.FOOD.ordinal()) {
             points += QTD_POINTS;
             pointsText.setText("Pontos: " + points);
             this.screen[snakeHead.getY()][snakeHead.getX()] = Items.Item.SNAKE_BODY.ordinal();
@@ -227,7 +240,14 @@ public class SnakeGameV3 implements Runnable {
             snakeBody.setDirection(snakeHead.getDirection());
             snake.add(0,snakeBody);
             snakeHead = snakeBody;
-            this.screen[snakeHead.getY()][snakeHead.getX()] = Items.Item.SNAKE_BODY.ordinal();
+            if (inBounds()) {
+                this.screen[snakeHead.getY()][snakeHead.getX()] = Items.Item.SNAKE_BODY.ordinal();
+                draw();
+                MusicPlayer musicPlayer = new MusicPlayer("src/musics_and_sounds/EatSound_CC0_by_EugeneLoza.mp3");
+                Thread music = new Thread(musicPlayer);
+                music.setDaemon(true);
+                music.start();
+            }
         }
     }
     
@@ -271,4 +291,13 @@ public class SnakeGameV3 implements Runnable {
        Platform.runLater(() -> {gc.setFill(Color.LAVENDER);});
         
     }
+    
+    private boolean inBounds() {
+        int x = snakeHead.getX();
+        int y = snakeHead.getY();
+        
+        return x >= 0 && x < SCREEN_HORIZONTAL_BOUND 
+            && y >= 0 && y < SCREEN_VERTICAL_BOUND; 
+    }
+    
 }

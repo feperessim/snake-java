@@ -19,11 +19,6 @@ public class FXMain extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/FXMLGameScreen.fxml"));
         Scene scene = new Scene(root);
-        /*scene.setOnKeyPressed(event -> {
-            //if(event.getCode() == KeyCode.ENTER){
-                       handleSnakeDirection(event);
-            //}
-        });*/
         stage.setScene(scene);
         stage.setTitle("Snake Game");
         scene.getStylesheets().add("css/mainCss.css");

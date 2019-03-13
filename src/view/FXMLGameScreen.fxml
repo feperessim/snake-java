@@ -22,13 +22,13 @@
                     <MenuItem mnemonicParsing="false" onAction="#handleMenuItemComecar" text="Começar" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Configuraçoes">
+                <Menu mnemonicParsing="false">
                      <graphic>
                         <MenuButton mnemonicParsing="false" text="Niveis">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Facil" />
-                            <MenuItem mnemonicParsing="false" text="Mediano" />
-                              <MenuItem mnemonicParsing="false" text="Dificil" />
+                            <MenuItem mnemonicParsing="false" onAction="#handleMenuButtonFacil" text="Facil" />
+                            <MenuItem mnemonicParsing="false" onAction="#handleMenuButtonMediano" text="Mediano" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleMenuButtonDificil" text="Dificil" />
                           </items>
                         </MenuButton>
                      </graphic>
