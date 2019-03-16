@@ -7,7 +7,6 @@
 */
 package controller;
 
-import enums.Directions;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -15,14 +14,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuBar;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import model.Snake;
 import model.SnakeBody;
-import runnables.MusicPlayer;
-import runnables.SnakeGameV3;
+import runnables.SnakeGame;
 
 
 public class FXMLGameScreenController implements Initializable {
@@ -48,7 +44,6 @@ public class FXMLGameScreenController implements Initializable {
     private GraphicsContext gc;
     private int difficult;
     private int[][] screen;
-    private Snake snake;
     private SnakeBody snakeHead;
     private SnakeBody snakeTail;
     private int MAX_HEIGHT;
@@ -84,7 +79,7 @@ public class FXMLGameScreenController implements Initializable {
     public void handleMenuItemComecar() {
         setScreenItems(true);
         pointsText.setText("Pontos: 0");
-        SnakeGameV3 snakeGame = new SnakeGameV3(canvas, difficult, pointsText);
+        SnakeGame snakeGame = new SnakeGame(canvas, difficult, pointsText);
         Thread game = new Thread(snakeGame);
         game.setDaemon(true);
         game.start();
