@@ -1,10 +1,3 @@
-/*Refs: 
- * https://opengameart.org/content/snake-sprites-sound
- * https://www.devmedia.com.br/tipos-enum-no-java/25729
- * https://docs.oracle.com/javafx/2/canvas/jfxpub-canvas.htm#BCFCCEFE
- * https://docs.oracle.com/javase/8/javafx/api/javafx/scene/canvas/GraphicsContext.html#fillOval-double-double-double-double-
- * Busca Ceoil
-*/
 package controller;
 
 import java.net.URL;
