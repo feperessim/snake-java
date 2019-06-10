@@ -86,7 +86,7 @@ public class SnakeGame implements Runnable {
     
     @Override
     public void run() {
-        MusicPlayer musicPlayerGame = new MusicPlayer("src/musics_and_sounds/Pat_Metheny_Always_and_Forever.mp3", true);
+        MusicPlayer musicPlayerGame = new MusicPlayer("src/musics_and_sounds/add_your_music_game_here.mp3", true);
         Thread musicGame = new Thread(musicPlayerGame);
         musicGame.setDaemon(true);
         musicGame.start();
